@@ -8,7 +8,16 @@ def main():
 
     client_socket, _ = server_socket.accept()
 
-    client_socket.sendall(b"HTTP/1.1 200 OK\r\n\r\n")
+    request = client_socket.recv(1024).decode()
+    
+    url = request.split(" ")[1]
+
+    if url == "/":
+        response = "HTTP/1.1 200 OK\r\n\r\n"
+    else:
+        response = "HTTP/1.1 404 Not found\r\n\r\n"
+
+    client_socket.sendall(response.encode())
 
 if __name__ == "__main__":
     main()
