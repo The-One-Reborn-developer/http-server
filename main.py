@@ -14,6 +14,9 @@ def main():
 
     if url == "/":
         response = "HTTP/1.1 200 OK\r\n\r\n"
+    elif url.startswith('/echo/'):
+        string = url.split("/echo/")[1]
+        response = f"HTTP/1.1 200 OK\r\nContent-Type: text/plain\r\nContent-Length: {len(string)}\r\n\r\n{string}"
     else:
         response = "HTTP/1.1 404 Not found\r\n\r\n"
 
