@@ -6,6 +6,7 @@
 
 - GET / - returns a 200 OK
 - GET /echo/{string} - returns the string
+- GET /user-agent - returns the user agent
 
 ## Types of responses
 
