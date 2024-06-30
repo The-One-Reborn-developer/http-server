@@ -4,7 +4,8 @@
 
 ## Types of requests
 
-- GET
+- GET / - returns a 200 OK
+- GET /echo/{string} - returns the string
 
 ## Types of responses
 
