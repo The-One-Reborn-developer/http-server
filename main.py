@@ -9,7 +9,8 @@ def main():
     client_socket, _ = server_socket.accept()
 
     request = client_socket.recv(1024).decode()
-    
+    parsed_request = request.split("\r\n")
+
     url = request.split(" ")[1]
 
     if url == "/":
@@ -17,6 +18,9 @@ def main():
     elif url.startswith('/echo/'):
         string = url.split("/echo/")[1]
         response = f"HTTP/1.1 200 OK\r\nContent-Type: text/plain\r\nContent-Length: {len(string)}\r\n\r\n{string}"
+    elif url.startswith('/user-agent'):
+        user_agent = parsed_request[3].split(': ')[1]
+        response = f"HTTP/1.1 200 OK\r\nContent-Type: text/plain\r\nContent-Length: {len(user_agent)}\r\n\r\n{user_agent}"
     else:
         response = "HTTP/1.1 404 Not found\r\n\r\n"
 
