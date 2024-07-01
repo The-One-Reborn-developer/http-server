@@ -16,7 +16,7 @@
 - GET / - returns a 200 OK
 - GET /echo/{string} - returns the string
 - GET /user-agent - returns the user agent
-- GET /files/{path} - returns the file's content  # commit 5
+- GET /files/{path} - returns the file's content
 - POST /files/{path} - creates the file  # commit 7
 
 ## Types of responses
