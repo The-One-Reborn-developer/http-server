@@ -36,6 +36,9 @@ def handle_client(client_socket, client_address):
 
 
 def main():
+    '''
+    Start the server and handle incoming client connections.
+    '''
     server_socket = socket.create_server(("localhost", 4221), reuse_port=True)
     server_socket.listen(1)
 
