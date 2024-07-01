@@ -22,6 +22,6 @@
 ## Types of responses
 
 - 200 OK
-- 201 Created  # commit 8
+- 201 Created
 - 400 Bad request
 - 404 Not found
