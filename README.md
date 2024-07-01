@@ -2,7 +2,7 @@
 
 **Basic server for basic needs.**
 
-## Headers  # commit 9
+## Headers
 
 - `Content-Type`
 - `Content-Length`
