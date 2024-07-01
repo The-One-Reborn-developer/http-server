@@ -17,7 +17,7 @@
 - GET /echo/{string} - returns the string
 - GET /user-agent - returns the user agent
 - GET /files/{path} - returns the file's content
-- POST /files/{path} - creates the file  # commit 7
+- POST /files/{path} - creates the file
 
 ## Types of responses
 
