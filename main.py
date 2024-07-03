@@ -3,6 +3,9 @@ import threading
 import gzip
 
 def handle_client(client_socket, client_address):
+    '''
+    Handle a single client connection.
+    '''
     request = client_socket.recv(1024).decode()
     parsed_request = request.split("\r\n")
 
