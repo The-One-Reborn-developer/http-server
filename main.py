@@ -28,7 +28,7 @@ def handle_client(client_socket, client_address):
                 f'Content-Length: {len(user_agent)}\r\n\r\n'
                 f'{user_agent}'
             ).encode('utf-8')
-        elif url.startswith('/files'):  # commit 4
+        elif url.startswith('/files'):
             file_path = url.split("/files/")[1]
             with open(file_path, 'rb') as file:
                 file_data = file.read()
