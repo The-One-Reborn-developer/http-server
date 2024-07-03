@@ -14,12 +14,21 @@ def handle_client(client_socket, client_address):
             response = "HTTP/1.1 200 OK\r\n\r\n"
         elif url.startswith('/echo/'):
             string = url.split("/echo/")[1]
-            response = (
-                f'HTTP/1.1 200 OK\r\n'
-                'Content-Type: text/plain\r\n'
-                f'Content-Length: {len(string)}\r\n\r\n'
-                f'{string}'
-            ).encode('utf-8')
+            if 'Accept-Encoding' in request:
+                compressed_string = gzip.compress(string.encode('utf-8'))
+                response = (
+                    f'HTTP/1.1 200 OK\r\n'
+                    'Content-Type: text/plain\r\n'
+                    f'Content-Length: {len(string)}\r\n\r\n'
+                    f'{compressed_string}'
+                ).encode('utf-8')
+            else:
+                response = (
+                    f'HTTP/1.1 200 OK\r\n'
+                    'Content-Type: text/plain\r\n'
+                    f'Content-Length: {len(string)}\r\n\r\n'
+                    f'{string}'
+                ).encode('utf-8')
         elif url.startswith('/user-agent'):
             user_agent = parsed_request[3].split(': ')[1]
             response = (
