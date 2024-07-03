@@ -52,7 +52,7 @@ def handle_client(client_socket, client_address):
             ).encode('utf-8')
         else:
             response = "HTTP/1.1 404 Not found\r\n\r\n".encode('utf-8')
-    elif method == "POST":  # commit 5
+    elif method == "POST":
         file_path = url.split("/files/")[1]
         with open(file_path, 'wb') as file:
             file.write(parsed_request[-1].encode())
