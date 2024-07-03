@@ -67,11 +67,15 @@ def main():
     '''
     Start the server and handle incoming client connections.
     '''
+    # Create a server socket
     server_socket = socket.create_server(("localhost", 4221), reuse_port=True)
+    # Put the server socket into listening mode
     server_socket.listen(1)
 
     while True:
+        # Accept a client connection
         client_socket, client_address = server_socket.accept()
+        # Create a new thread to handle the client connection
         threading.Thread(target=handle_client, args=(client_socket, client_address)).start()
     
 
