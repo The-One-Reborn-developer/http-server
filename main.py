@@ -6,9 +6,12 @@ def handle_client(client_socket, client_address):
     '''
     Handle a single client connection.
     '''
+    # Receive the request from the client
     request = client_socket.recv(1024).decode()
+    # Split the request into lines
     parsed_request = request.split("\r\n")
 
+    # Extract the method (GET, POST, etc.) and URL from the request
     method = parsed_request[0].split(" ")[0]
     url = request.split(" ")[1]
 
