@@ -1,5 +1,6 @@
 import socket
 import threading
+import gzip
 
 def handle_client(client_socket, client_address):
     request = client_socket.recv(1024).decode()
@@ -27,8 +28,23 @@ def handle_client(client_socket, client_address):
                 f'Content-Length: {len(user_agent)}\r\n\r\n'
                 f'{user_agent}'
             ).encode('utf-8')
+        elif url.startswith('/files'):  # commit 4
+            file_path = url.split("/files/")[1]
+            with open(file_path, 'rb') as file:
+                file_data = file.read()
+            response = (
+                f'HTTP/1.1 200 OK\r\n'
+                'Content-Type: text/plain\r\n'
+                f'Content-Length: {len(file_data)}\r\n\r\n'
+                f'{file_data.decode("utf-8")}'
+            ).encode('utf-8')
         else:
             response = "HTTP/1.1 404 Not found\r\n\r\n".encode('utf-8')
+    elif method == "POST":  # commit 5
+        file_path = url.split("/files/")[1]
+        with open(file_path, 'wb') as file:
+            file.write(parsed_request[-1].encode())
+        response = "HTTP/1.1 201 Created\r\n\r\n".encode('utf-8')
     else:
         response = "HTTP/1.1 400 Bad Request\r\n\r\n".encode('utf-8')
 
